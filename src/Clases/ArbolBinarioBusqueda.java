@@ -9,23 +9,32 @@ package Clases;
  * @author andresrivas
  */
 public class ArbolBinarioBusqueda {
-    
+
     private NodoArbol raiz;
 
     public ArbolBinarioBusqueda() {
         this.raiz = null;
     }
-    
+
     public boolean estaVacio() {
         return getRaiz() == null;
     }
     
+    // Funcion para insertar un cliente en el arbol usando como parametro para ordenarlo sus fechas de llegada
     public void insertar(Cliente cliente, NodoArbol raiz) {
         NodoArbol node = new NodoArbol(cliente);
         if (estaVacio()) {
             setRaiz(node);
         } else {
-            if (cliente.getCedula() < raiz.getCliente().getCedula()) {
+            int dia = Integer.parseInt(cliente.getLlegada().substring(0, 2));  //Obtenemos los dia, mes y anio de llegada del cliente a ingresar y de la raiz
+            int mes = Integer.parseInt(cliente.getLlegada().substring(3, 5));
+            int anio = Integer.parseInt(cliente.getLlegada().substring(6, 10));
+            int diaRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(0, 2));
+            int mesRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(3, 5));
+            int anioRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(6, 10));
+            if (anio < anioRaiz
+                    || (anio == anioRaiz && mes < mesRaiz)
+                    || (anio == anioRaiz && mes == mesRaiz && dia < diaRaiz)) {
                 if (raiz.getLeftSon() == null) {
                     raiz.setLeftSon(node);
                 } else {
@@ -40,16 +49,16 @@ public class ArbolBinarioBusqueda {
             }
         }
     }
-    
-    public String preOrden(NodoArbol raiz) {
-        return preordenRecursivo(raiz, "");
+
+    public String inOrden(NodoArbol raiz) {
+        return inOrdenRecursivo(raiz, "");
     }
-    
-    private String preordenRecursivo(NodoArbol raiz, String resultado) {
+
+    private String inOrdenRecursivo(NodoArbol raiz, String resultado) {
         if (raiz != null) {
-            resultado += raiz.getCliente().getCedula() +", "+ raiz.getCliente().getNombre() +", "+ raiz.getCliente().getApellido()+", "+ raiz.getCliente().getCorreo()+", "+ raiz.getCliente().getGenero()+", "+ raiz.getCliente().getLlegada() + "\n";
-            resultado = preordenRecursivo(raiz.getLeftSon(), resultado);
-            resultado = preordenRecursivo(raiz.getRightSon(), resultado);
+            resultado = inOrdenRecursivo(raiz.getLeftSon(), resultado);
+            resultado += raiz.getCliente().getCedula() + ", " + raiz.getCliente().getNombre() + ", " + raiz.getCliente().getApellido() + ", " + raiz.getCliente().getCorreo() + ", " + raiz.getCliente().getGenero() + ", " + raiz.getCliente().getLlegada() + "\n";
+            resultado = inOrdenRecursivo(raiz.getRightSon(), resultado);
         }
         return resultado;
     }
@@ -62,5 +71,4 @@ public class ArbolBinarioBusqueda {
         this.raiz = raiz;
     }
 
-    
 }
