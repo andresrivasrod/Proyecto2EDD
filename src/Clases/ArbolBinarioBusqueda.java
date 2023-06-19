@@ -41,12 +41,17 @@ public class ArbolBinarioBusqueda {
         }
     }
     
-    public void preOrden(NodoArbol raiz) {
+    public String preOrden(NodoArbol raiz) {
+        return preordenRecursivo(raiz, "");
+    }
+    
+    private String preordenRecursivo(NodoArbol raiz, String resultado) {
         if (raiz != null) {
-            System.out.println(raiz.getCliente().getCedula() +", "+ raiz.getCliente().getNombre() +", "+ raiz.getCliente().getApellido()+", "+ raiz.getCliente().getCorreo()+", "+ raiz.getCliente().getGenero()+", "+ raiz.getCliente().getLlegada()+", "+ raiz.getCliente().getNumeroHabitacion());
-            preOrden(raiz.getLeftSon());
-            preOrden(raiz.getRightSon());
+            resultado += raiz.getCliente().getCedula() +", "+ raiz.getCliente().getNombre() +", "+ raiz.getCliente().getApellido()+", "+ raiz.getCliente().getCorreo()+", "+ raiz.getCliente().getGenero()+", "+ raiz.getCliente().getLlegada() + "\n";
+            resultado = preordenRecursivo(raiz.getLeftSon(), resultado);
+            resultado = preordenRecursivo(raiz.getRightSon(), resultado);
         }
+        return resultado;
     }
 
     public NodoArbol getRaiz() {

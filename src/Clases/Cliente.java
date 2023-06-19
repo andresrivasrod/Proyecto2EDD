@@ -22,6 +22,7 @@ public class Cliente {
     private boolean reservacion;
     private boolean estado;
     private boolean historico;
+    private Cliente siguiente;
     
     //Constructor para un cliente de la hoja de reservacion
     public Cliente(int cedula, String nombre, String apellido, String correo, String genero, String tipoHabitacion, String celular, String llegada, String salida) {
@@ -37,6 +38,7 @@ public class Cliente {
         this.reservacion = true;
         this.estado = false;
         this.historico = false;
+        this.siguiente = null;
     }
     //Constructor para un cliente de la hoja de estado
     public Cliente(int numeroHabitacion, String nombre, String apellido, String correo, String genero, String celular, String llegada) {
@@ -50,6 +52,7 @@ public class Cliente {
         this.reservacion = false;
         this.estado = true;
         this.historico = false;
+        this.siguiente = null;
     }
     //Constructor para un cliente de la hoja de historico
     public Cliente(int cedula, String nombre, String apellido, String correo, String genero, String llegada, int numeroHabitacion) {
@@ -63,6 +66,7 @@ public class Cliente {
         this.reservacion = false;
         this.estado = false;
         this.historico = true;
+        this.siguiente = null;
     }
 
     public int getCedula() {
@@ -167,6 +171,14 @@ public class Cliente {
 
     public void setHistorico(boolean historico) {
         this.historico = historico;
+    }
+
+    public Cliente getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(Cliente siguiente) {
+        this.siguiente = siguiente;
     }
     
     

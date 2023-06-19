@@ -4,6 +4,8 @@
  */
 package proyecto2;
 
+
+
 /**
  *
  * @author andresrivas
@@ -14,6 +16,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+         
     }
     
 }
