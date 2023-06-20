@@ -20,7 +20,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Funciones f = new Funciones();
-        f.iniciar();
+        //f.iniciar();
         //f.conseguirHabitacion("Kay", "McPherson");
         //f.buscarReservas(19504241);
         f.asignarHabitacion("a");
