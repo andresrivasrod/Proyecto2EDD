@@ -26,15 +26,15 @@ public class ArbolBinarioBusqueda {
         if (estaVacio()) {
             setRaiz(node);
         } else {
-            int dia = Integer.parseInt(cliente.getLlegada().substring(0, 2));  //Obtenemos los dia, mes y anio de llegada del cliente a ingresar y de la raiz
+            int dia = Integer.parseInt(cliente.getLlegada().substring(0, 2));  //Obtenemos los dia, mes y año de llegada del cliente a ingresar y de la raiz
             int mes = Integer.parseInt(cliente.getLlegada().substring(3, 5));
-            int anio = Integer.parseInt(cliente.getLlegada().substring(6, 10));
+            int año = Integer.parseInt(cliente.getLlegada().substring(6, 10));
             int diaRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(0, 2));
             int mesRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(3, 5));
-            int anioRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(6, 10));
-            if (anio < anioRaiz
-                    || (anio == anioRaiz && mes < mesRaiz)
-                    || (anio == anioRaiz && mes == mesRaiz && dia < diaRaiz)) {
+            int añoRaiz = Integer.parseInt(raiz.getCliente().getLlegada().substring(6, 10));
+            if (año < añoRaiz
+                    || (año == añoRaiz && mes < mesRaiz)
+                    || (año == añoRaiz && mes == mesRaiz && dia < diaRaiz)) {
                 if (raiz.getLeftSon() == null) {
                     raiz.setLeftSon(node);
                 } else {
