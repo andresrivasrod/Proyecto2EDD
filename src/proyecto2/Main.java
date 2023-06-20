@@ -4,6 +4,9 @@
  */
 package proyecto2;
 
+import Clases.Funciones;
+import Clases.ManejoDeArchivos;
+
 
 
 /**
@@ -16,7 +19,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Funciones f = new Funciones();
+        f.iniciar();
+        //f.conseguirHabitacion("Kay", "McPherson");
+        //f.buscarReservas(19504241);
+        f.asignarHabitacion("a");
+        }
          
     }
     
-}
+
