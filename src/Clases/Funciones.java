@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author andrespaz
  */
 public class Funciones {
-    
+    /*
     public String leerHabitacionesCSV(){
         ManejoDeArchivos archivo = new ManejoDeArchivos();
         String habitaciones = archivo.leerCSV("//Users//andres//Desktop//Proyecto2EDD//habitaciones.csv");
@@ -103,6 +103,7 @@ public class Funciones {
         escribirEstado(leerEstadoCSV());
         escribirHistorico(leerHistoricoCSV());
     }
+*/
     
     public String leer(String direccion){
         String text = "";
