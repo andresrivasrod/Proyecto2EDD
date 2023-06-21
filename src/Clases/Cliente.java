@@ -9,7 +9,7 @@ package Clases;
  * @author andresrivas
  */
 public class Cliente {
-    private int cedula;
+    private String cedula;
     private String nombre;
     private String apellido;
     private String correo;
@@ -25,7 +25,7 @@ public class Cliente {
     private Cliente siguiente;
     
     //Constructor para un cliente de la hoja de reservacion
-    public Cliente(int cedula, String nombre, String apellido, String correo, String genero, String tipoHabitacion, String celular, String llegada, String salida) {
+    public Cliente(String cedula, String nombre, String apellido, String correo, String genero, String tipoHabitacion, String celular, String llegada, String salida) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -55,7 +55,7 @@ public class Cliente {
         this.siguiente = null;
     }
     //Constructor para un cliente de la hoja de historico
-    public Cliente(int cedula, String nombre, String apellido, String correo, String genero, String llegada, int numeroHabitacion) {
+    public Cliente(String cedula, String nombre, String apellido, String correo, String genero, String llegada, int numeroHabitacion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -69,11 +69,11 @@ public class Cliente {
         this.siguiente = null;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
