@@ -24,7 +24,7 @@ public class Main {
         f.conseguirHabitacion("Kay", "McPherson");
         f.buscarReservas(19504241);
         f.asignarHabitacion("a");
-        f.historicoHabitacion(255);
+        f.historicoHabitacion(76);
         }
          
     }
