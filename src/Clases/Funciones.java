@@ -201,7 +201,7 @@ public class Funciones {
     }
     
   /*  
-    public String asignarHabitacion(String tipoHabitacion){
+    public String arreglarCSVinicial(String tipoHabitacion){
         String direccion = "src//file//estado.csv";
         String text = leer(direccion);
         String[] text1 = text.split("\n");
@@ -290,7 +290,7 @@ public class Funciones {
         String text3 = leer(direccion1);
         String[] text4 = text3.split("\n");
         int cont = 0;
-        System.out.println("cont = " + text4.length);
+        //System.out.println("cont = " + text4.length);
         for (int i = 1; i < text4.length; i++) {
             cont =0;
             String j = String.valueOf(i);
@@ -303,7 +303,7 @@ public class Funciones {
                 disponibles += j + " " ;
             }
         }
-        System.out.println("cont = " + disponibles);
+        //System.out.println("cont = " + disponibles);
         String finald = disponibles.trim();
         return finald ;
 
@@ -319,7 +319,7 @@ public class Funciones {
         String habitacionF ="";
         String g = "";
         int habitacion;
-        System.out.println(hab1[3]);
+        
         for (int i = 0; i < hab1.length; i++) {
                 habitacion = Integer.valueOf(hab1[i]);
             if(b.equalsIgnoreCase("simple") && habitacion<101){
@@ -368,7 +368,7 @@ public class Funciones {
         String text10 ="";
         for (int i = 0; i < text6.length; i++) {
             String[] text8 = text6[i].split(";");
-            String texto7 = text6[0].replace(".", "");
+            //String texto7 = text6[0].replace(".", "");
             if(text8[3].contains(correo)){
                 JOptionPane.showMessageDialog(null, "El cliente " + text8[1] + " " + text8[2] + " ya se encuentra registrado");
                 return false;
@@ -402,10 +402,46 @@ public class Funciones {
         System.out.println(text4);
         escribirEstado(text4);
         escribirReservas(a);
-        escribirHistorico(text10);
+        //escribirHistorico(text10);
         return true;
         
         
+    }
+    
+    public boolean checkOut(String correo, int cedula){
+        String ci = String.valueOf(cedula);
+        String direccion = "src//file//estado.csv";
+        String text = leer(direccion);
+        String[] text2 = text.split("\n");
+        String text3 = "";
+        String direccion2 = "src//file//historico.csv";
+        String text4 =leer(direccion2);
+        String text5 ="";
+        boolean b = false;
+        int cont = 0;
+        for (int i = 0; i < text2.length; i++) {
+            String[] text6 = text2[i].split(";");
+            
+            if(text6[3].contains(correo)){
+                text3 += ci +";"+ text6[1] + ";" + text6[2] +";"+text6[3] +";"+text6[4] + ";" + text6[6] + ";" + text6[0];
+                b = true;
+                
+                JOptionPane.showMessageDialog(null, "Esperamos haya tenido una buena estadia sr/sra " +text6[1] + " "+ text6[2]);
+            }else{
+                text5 += text2[i] + "\n";
+                cont ++;
+            }      
+        }
+        
+        if (!b){
+            JOptionPane.showMessageDialog(null, "El cliente ya no se encuentra hospedado");
+            return b;
+            
+        }
+        String t = text4 + text3;
+        escribirEstado(text5);
+        escribirHistorico(t);
+        return b;
     }
     
     public void historicoHabitacion(int habitacion){
