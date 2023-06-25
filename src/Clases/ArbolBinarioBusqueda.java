@@ -49,11 +49,13 @@ public class ArbolBinarioBusqueda {
             }
         }
     }
-
+    
+    // Funcion para obtener los datos del arbol mediante el metodo inoroden
     public String inOrden(NodoArbol raiz) {
         return inOrdenRecursivo(raiz, "");
     }
-
+    
+    // Funcion recursiva de I=inorden que nos devolvera string con los huespedes
     private String inOrdenRecursivo(NodoArbol raiz, String resultado) {
         if (raiz != null) {
             resultado = inOrdenRecursivo(raiz.getLeftSon(), resultado);
