@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Hashtable;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +16,9 @@ import javax.swing.JOptionPane;
  * @author andrespaz
  */
 public class Funciones {
+    /*
+    
+    metodos comentados para la primera lectura del Excel 
     
     public String leerHabitacionesCSV(){
         ManejoDeArchivos archivo = new ManejoDeArchivos();
@@ -42,7 +44,9 @@ public class Funciones {
         String reservas = archivo.leerCSV("//Users//andres//Desktop//Proyecto2EDD//reservas.csv");
         return reservas;   
     }
+    */
     
+    // Metodos para escribir en los respectivos archivos de .csv
     public void escribirEstado(String estado){
         File Old_File=new File("src//file//estado.csv");
         Old_File.delete();
@@ -96,14 +100,19 @@ public class Funciones {
         }
         
     }
-  
+/*
+    Iniciaba la lectura del excel 
+    
     public void iniciar(){
         escribirReservas(leerReservasCSV());
         escribirHabitaciones(leerHabitacionesCSV());
         escribirEstado(leerEstadoCSV());
         escribirHistorico(leerHistoricoCSV());
     }
+    */
  
+    
+    // Metodo para leer los archivos csv
     public String leer(String direccion){
         String text = "";
 
@@ -133,36 +142,37 @@ public class Funciones {
         return text;
     }
     
-    public Hashtable crearHashTableEstado(){
+    // metodo para crear y llenar con datos el hashTable
+    public HashTable crearHashTableEstado(){
         String direccion = "src//file//estado.csv";
         String text = leer(direccion);
         String[] text1 = text.split("\n");
-        Hashtable<String,String> hashTableEstado = new Hashtable<>();
-        for (int i = 0; i < text1.length; i++) {
+        HashTable hasht = new HashTable(500);
+         for (int i = 0; i < text1.length; i++) {
             String[] text2 = text1[i].split(";");
-            hashTableEstado.put(text2[1] + " " + text2[2], text2[0]);
-                
+            hasht.put(text2[1] + " " + text2[2],text2[0]);    
             }
-            
-        
-        
-        return hashTableEstado;
+        return hasht;
     }
-    
+                 
+    // Metodo para conseguir el numero de habitacion mediante un Key en el hashTable 
     public void conseguirHabitacion(String nombre, String apellido){
-        Hashtable hash = crearHashTableEstado();
+        HashTable hash = crearHashTableEstado();
         String a = nombre + " " + apellido;
-        if (hash.get(a) == ""){
+        
+        if ("".equals(hash.get(a))){
             JOptionPane.showMessageDialog(null, "La habitacion aun no ha sido entregada al usuario");
         }
         else if(hash.get(a)== null){
             JOptionPane.showMessageDialog(null, "El usuario no se encuentra registrado en el hotel");
         }
         else{
-            JOptionPane.showMessageDialog(null, "La habitacion en donde se hospeda el huesped " + nombre + " " + apellido + " es la numero " + hash.get(a));
+            JOptionPane.showMessageDialog(null, "La habitacion en donde se hospeda el huesped " + nombre + " " + apellido + " es la numero "+ hash.get(a)); //+ hash.get(a));
         }
     }
-  
+        
+    
+    // metodo para buscar una reserva mediante la cedula 
     public void buscarReservas(int cedula){
         String ci = String.valueOf(cedula);
         String direccion = "src//file//reservas.csv";
@@ -180,6 +190,7 @@ public class Funciones {
         }
           
     }
+    
     
     public void checkIn(int cedula){
         String ci = String.valueOf(cedula);
@@ -271,6 +282,8 @@ public class Funciones {
         return null;
     }
 */
+    
+    //Metodo para obtener los numeros de habitaciones libres, es retornado como un String el numero
 
     
    public String habitacionLibres(){
@@ -308,6 +321,8 @@ public class Funciones {
         return finald ;
 
     }
+   
+   // metodo para retornar las habitaciones disponibles segun el tipo de reserva
     
     
     public String entregarHabitacion(String b){
@@ -350,6 +365,8 @@ public class Funciones {
         
         
     }
+    
+    // Metodo para hacer el check In en el hotel
     
     public boolean asignarHabitacion(int cedula,String correo){
         String ci = String.valueOf(cedula);
@@ -408,6 +425,8 @@ public class Funciones {
         
     }
     
+    // Metodo para hacer el chec Out del hotel 
+    
     public boolean checkOut(String correo, int cedula){
         String ci = String.valueOf(cedula);
         String direccion = "src//file//estado.csv";
@@ -443,6 +462,8 @@ public class Funciones {
         escribirHistorico(t);
         return b;
     }
+    
+    //Metodo para retornar los huespedes de una habitacion en especifico
     
     public void historicoHabitacion(int habitacion){
         String direccion = "src//file//historico.csv";

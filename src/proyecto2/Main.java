@@ -10,7 +10,7 @@ import Clases.ManejoDeArchivos;
 
 
 /**
- *
+ *Clase principal 
  * @author andresrivas
  */
 public class Main {
@@ -22,12 +22,12 @@ public class Main {
         Funciones f = new Funciones();
         //f.iniciar();
         
-        //f.conseguirHabitacion("Kay", "McPherson");
+        f.conseguirHabitacion("Francklyn","Fryman");
         //f.buscarReservas(15275933);
         //f.asignarHabitacion(13502927,"eralestone0@ask.com");
        // f.historicoHabitacion(1);
        //f.asignarHabitacion("a");
-       f.checkOut("eralestone0@ask.com", 28853454);
+       //f.checkOut("eralestone0@ask.com", 28853454);
         }
          
     }
