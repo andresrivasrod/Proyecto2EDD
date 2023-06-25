@@ -5,7 +5,7 @@
 package Clases;
 
 /**
- *
+ *Clase cliente
  * @author andresrivas
  */
 public class Cliente {
@@ -68,6 +68,8 @@ public class Cliente {
         this.historico = true;
         this.siguiente = null;
     }
+    
+    // Getter y setters de la clase 
 
     public String getCedula() {
         return cedula;
