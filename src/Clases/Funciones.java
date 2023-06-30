@@ -4,11 +4,14 @@
  */
 package Clases;
 
+import Interfaces.ErrorWindow;
+import Interfaces.ReservaInfo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -156,21 +159,26 @@ public class Funciones {
     }
                  
     // Metodo para conseguir el numero de habitacion mediante un Key en el hashTable 
-    public void conseguirHabitacion(String nombre, String apellido){
+    public String conseguirHabitacion(String nombre, String apellido){
         HashTable hash = crearHashTableEstado();
         String a = nombre + " " + apellido;
+        ErrorWindow Error=new ErrorWindow();
         
         if ("".equals(hash.get(a))){
-            JOptionPane.showMessageDialog(null, "La habitacion aun no ha sido entregada al usuario");
+            Error.setVisible(true);
+            Error.setError_name("Habitacion sin entregar aún");
         }
         else if(hash.get(a)== null){
-            JOptionPane.showMessageDialog(null, "El usuario no se encuentra registrado en el hotel");
+            Error.setVisible(true);
+            Error.setError_name("Usuario no registrado");
         }
         else{
-            JOptionPane.showMessageDialog(null, "La habitacion en donde se hospeda el huesped " + nombre + " " + apellido + " es la numero "+ hash.get(a)); //+ hash.get(a));
+            return hash.get(a);
+            //JOptionPane.showMessageDialog(null, "La habitacion en donde se hospeda el huesped " + nombre + " " + apellido + " es la numero "+ hash.get(a)); //+ hash.get(a));
         }
+        return null;
     }
-        
+    
     
     // metodo para buscar una reserva mediante la cedula 
     public void buscarReservas(int cedula){
@@ -187,10 +195,45 @@ public class Funciones {
                 break;
             }
             
-        }
-          
+        } 
     }
     
+    //Metodo para mostrar todas las reservas como una lista en la interfaz
+    public void ReservasUI(javax.swing.JList<String> Lista){
+        String direccion = "src//file//reservas.csv";
+        String text = leer(direccion);
+        String[] text1 = text.split("\n");
+        
+        for (int i = 1; i < text1.length; i++) {
+            String[] text2 = text1[i].split(";");
+            String texto = text2[0].replace(".", "");
+            DefaultListModel<String> modelo = new DefaultListModel<String>();
+            Lista.setModel(modelo);
+            modelo.addElement(" C.I: " + text2[0] + " Tipo: " + text2[5] + " Fecha de entrada: " + text2[7] + " Fecha programada de salida:  " + text2[8]);  
+        } 
+    }
+    public void buscarReservasUI2(int cedula){
+        String ci = String.valueOf(cedula);
+        String direccion = "src//file//reservas.csv";
+        String text = leer(direccion);
+        String[] text1 = text.split("\n");
+        for (int i = 1; i < text1.length; i++) {
+            String[] text2 = text1[i].split(";");
+            String texto = text2[0].replace(".", "");
+            if(texto.contains(ci)){
+                ReservaInfo Info=new ReservaInfo();
+                Info.setNombre(text2[1]);
+                Info.setApellido(text2[2]);
+                Info.setCedula("C.I: "+text2[0]);
+                Info.setFechaEntr("Fecha de entrada: "+text2[7]);
+                Info.setFechaSal("Fecha de salida: "+text2[8]);
+                Info.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "La reserva esta a nombre de " + text2[1] + " " + text2[2] + " titular de la cedula de identidad " + text2[0] + " y es una habitacion " + text2[5] + " e ingresara en la fecha " + text2[7] + " y su reserva terminara en la fecha " + text2[8]);
+                break;
+            }
+            
+        } 
+    }
     
     public void checkIn(int cedula){
         String ci = String.valueOf(cedula);
@@ -319,7 +362,6 @@ public class Funciones {
         //System.out.println("cont = " + disponibles);
         String finald = disponibles.trim();
         return finald ;
-
     }
    
    // metodo para retornar las habitaciones disponibles segun el tipo de reserva
@@ -465,7 +507,7 @@ public class Funciones {
     
     //Metodo para retornar los huespedes de una habitacion en especifico
     
-    public void historicoHabitacion(int habitacion){
+    public void historicoHabitacion(int habitacion,javax.swing.JList<String> Lista){
         String direccion = "src//file//historico.csv";
         String text = leer(direccion);
         String hab = String.valueOf(habitacion);
@@ -475,12 +517,15 @@ public class Funciones {
             String[] text2 = text1[i].split(";");
             String texto = text2[6];
             if (texto.equals(hab)) {
-                Cliente cliente = new Cliente(text2[0],text2[1],text2[2],text2[3],text2[4],text2[5],Integer.parseInt(text2[6]));
+                Cliente cliente = new Cliente("\nCedula: "+text2[0],"Nombre y Apellido: "+text2[1],text2[2],"Correo: "+text2[3],"Género: "+text2[4]+"Fecha: ",text2[5],Integer.parseInt(text2[6]));
                 arbol.insertar(cliente, arbol.getRaiz());
             }
         }
+        DefaultListModel<String> modelo = new DefaultListModel<String>();
+        Lista.setModel(modelo);
         String string = arbol.inOrden(arbol.getRaiz());
-        JOptionPane.showMessageDialog(null,string);
+        modelo.addElement(string);
+        //JOptionPane.showMessageDialog(null,string);
     }
    
 }

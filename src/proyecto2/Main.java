@@ -6,7 +6,7 @@ package proyecto2;
 
 import Clases.Funciones;
 import Clases.ManejoDeArchivos;
-
+import Interfaces.NewClientUI;
 
 
 /**
@@ -21,15 +21,16 @@ public class Main {
     public static void main(String[] args) {
         Funciones f = new Funciones();
         //f.iniciar();
-        
-        f.conseguirHabitacion("Francklyn","Fryman");
+        //f.conseguirHabitacion("Francklyn","Fryman");
         //f.buscarReservas(15275933);
         //f.asignarHabitacion(13502927,"eralestone0@ask.com");
        // f.historicoHabitacion(1);
        //f.asignarHabitacion("a");
        //f.checkOut("eralestone0@ask.com", 28853454);
+       f.habitacionLibres();
+       NewClientUI UI=new NewClientUI();
+       UI.setVisible(true);
         }
-         
     }
     
 
