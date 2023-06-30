@@ -36,19 +36,22 @@ public class NewRoomUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Background = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
         RoomWindow = new javax.swing.JButton();
         UserWindow = new javax.swing.JButton();
         BackgroundMenu = new javax.swing.JLabel();
         UserIcon = new javax.swing.JLabel();
         Historial = new javax.swing.JButton();
-        ScrollPanel = new javax.swing.JScrollPane();
-        Room_list = new javax.swing.JList<>();
         IntHab = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
         Cedula = new javax.swing.JTextField();
         Alojado2 = new javax.swing.JLabel();
-        Background = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Historico = new javax.swing.JTextArea();
+        Background1 = new javax.swing.JLabel();
+
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NewUI/Backgrounds/Background.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -104,15 +107,6 @@ public class NewRoomUI extends javax.swing.JFrame {
         });
         getContentPane().add(Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 140, 50));
 
-        ScrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        Room_list.setBackground(new java.awt.Color(32, 32, 33));
-        Room_list.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        Room_list.setForeground(new java.awt.Color(255, 255, 255));
-        ScrollPanel.setViewportView(Room_list);
-
-        getContentPane().add(ScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 440, 300));
-
         IntHab.setBackground(new java.awt.Color(32, 32, 33));
         IntHab.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         IntHab.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,8 +150,14 @@ public class NewRoomUI extends javax.swing.JFrame {
         Alojado2.setText("Reservaciones");
         getContentPane().add(Alojado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 130, -1));
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NewUI/Backgrounds/Background.png"))); // NOI18N
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 420));
+        Historico.setColumns(20);
+        Historico.setRows(5);
+        jScrollPane1.setViewportView(Historico);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 500, 310));
+
+        Background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NewUI/Backgrounds/Background.png"))); // NOI18N
+        getContentPane().add(Background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,7 +182,8 @@ public class NewRoomUI extends javax.swing.JFrame {
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
         try{
-            f.historicoHabitacion(Integer.parseInt(IntHab.getText()),Room_list);
+            String historico = f.historicoHabitacion(Integer.parseInt(IntHab.getText()));
+            Historico.setText(historico);
         } catch(Exception e){
             ErrorWindow Error=new ErrorWindow();
             Error.setVisible(true);
@@ -244,16 +245,17 @@ public class NewRoomUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Alojado2;
     private javax.swing.JLabel Background;
+    private javax.swing.JLabel Background1;
     private javax.swing.JLabel BackgroundMenu;
     private javax.swing.JButton Buscar;
     private javax.swing.JTextField Cedula;
     private javax.swing.JButton Historial;
+    private javax.swing.JTextArea Historico;
     private javax.swing.JTextField IntHab;
     private javax.swing.JButton RoomWindow;
-    private javax.swing.JList<String> Room_list;
     private javax.swing.JButton Salir;
-    private javax.swing.JScrollPane ScrollPanel;
     private javax.swing.JLabel UserIcon;
     private javax.swing.JButton UserWindow;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

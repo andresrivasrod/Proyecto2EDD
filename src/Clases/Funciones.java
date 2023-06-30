@@ -507,7 +507,7 @@ public class Funciones {
     
     //Metodo para retornar los huespedes de una habitacion en especifico
     
-    public void historicoHabitacion(int habitacion,javax.swing.JList<String> Lista){
+    public String historicoHabitacion(int habitacion){
         String direccion = "src//file//historico.csv";
         String text = leer(direccion);
         String hab = String.valueOf(habitacion);
@@ -517,14 +517,13 @@ public class Funciones {
             String[] text2 = text1[i].split(";");
             String texto = text2[6];
             if (texto.equals(hab)) {
-                Cliente cliente = new Cliente("\nCedula: "+text2[0],"Nombre y Apellido: "+text2[1],text2[2],"Correo: "+text2[3],"Género: "+text2[4]+"Fecha: ",text2[5],Integer.parseInt(text2[6]));
+                Cliente cliente = new Cliente("\nCedula: "+text2[0],"Nombre y Apellido: "+text2[1],text2[2],"Correo: "+text2[3],"Género: "+text2[4]+", Fecha: ",text2[5],Integer.parseInt(text2[6]));
                 arbol.insertar(cliente, arbol.getRaiz());
             }
         }
-        DefaultListModel<String> modelo = new DefaultListModel<String>();
-        Lista.setModel(modelo);
+        
         String string = arbol.inOrden(arbol.getRaiz());
-        modelo.addElement(string);
+        return string;
         //JOptionPane.showMessageDialog(null,string);
     }
    
