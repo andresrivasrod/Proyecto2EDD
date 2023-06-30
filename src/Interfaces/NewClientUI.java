@@ -203,12 +203,17 @@ public class NewClientUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Check_InActionPerformed
 
     private void NumHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumHabActionPerformed
-        try {
-            setAlojado1(f.conseguirHabitacion(Nombre.getText(), Apellido.getText()));
-        } catch (Exception e) {
-            ErrorWindow Error = new ErrorWindow();
-            Error.setVisible(true);
+        String n = Nombre.getText();
+        String a = Apellido.getText();
+        
+        String j = f.conseguirHabitacion(n,a);
+        if (j==null) {
+        }else{
+            setAlojado1(j);
         }
+        Nombre.setText("");
+        Apellido.setText("");
+
     }//GEN-LAST:event_NumHabActionPerformed
 
     private void ApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoActionPerformed

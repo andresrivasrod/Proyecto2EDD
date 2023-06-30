@@ -164,7 +164,7 @@ public class Funciones {
         String a = nombre + " " + apellido;
         ErrorWindow Error=new ErrorWindow();
         
-        if ("".equals(hash.get(a))){
+        if ("-1".equals(hash.get(a))){
             Error.setVisible(true);
             Error.setError_name("Habitacion sin entregar aún");
         }
@@ -526,5 +526,6 @@ public class Funciones {
         return string;
         //JOptionPane.showMessageDialog(null,string);
     }
+   
    
 }
