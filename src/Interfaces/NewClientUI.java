@@ -152,7 +152,7 @@ public class NewClientUI extends javax.swing.JFrame {
         Alojado1.setBackground(new java.awt.Color(32, 32, 33));
         Alojado1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         Alojado1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Alojado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 20, 30));
+        getContentPane().add(Alojado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 40, 30));
 
         Alojado.setBackground(new java.awt.Color(32, 32, 33));
         Alojado.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -205,6 +205,9 @@ public class NewClientUI extends javax.swing.JFrame {
     private void NumHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumHabActionPerformed
         String n = Nombre.getText();
         String a = Apellido.getText();
+        
+        n = n.substring(0,1).toUpperCase() + n.substring(1);
+        a = a.substring(0, 1).toUpperCase() + a.substring(1);
         
         String j = f.conseguirHabitacion(n,a);
         if (j==null) {

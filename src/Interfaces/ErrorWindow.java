@@ -70,6 +70,8 @@ public class ErrorWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        NewClientUI n = new NewClientUI();
+        n.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
     public void setError_name(String string){

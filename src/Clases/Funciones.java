@@ -162,6 +162,8 @@ public class Funciones {
     public String conseguirHabitacion(String nombre, String apellido){
         HashTable hash = crearHashTableEstado();
         String a = nombre + " " + apellido;
+        
+        
         ErrorWindow Error=new ErrorWindow();
         
         if ("-1".equals(hash.get(a))){
@@ -217,6 +219,7 @@ public class Funciones {
         String direccion = "src//file//reservas.csv";
         String text = leer(direccion);
         String[] text1 = text.split("\n");
+        boolean b = false;
         for (int i = 1; i < text1.length; i++) {
             String[] text2 = text1[i].split(";");
             String texto = text2[0].replace(".", "");
@@ -228,12 +231,20 @@ public class Funciones {
                 Info.setFechaEntr("Fecha de entrada: "+text2[7]);
                 Info.setFechaSal("Fecha de salida: "+text2[8]);
                 Info.setVisible(true);
+                b = true;
                 //JOptionPane.showMessageDialog(null, "La reserva esta a nombre de " + text2[1] + " " + text2[2] + " titular de la cedula de identidad " + text2[0] + " y es una habitacion " + text2[5] + " e ingresara en la fecha " + text2[7] + " y su reserva terminara en la fecha " + text2[8]);
                 break;
             }
+   
+        }
+        if(!b){
+                ErrorWindow Error = new ErrorWindow();
+                Error.setError_name("Cedula no encontrada!!!");
+                Error.setVisible(true);
+            }
             
-        } 
     }
+        
     
     public void checkIn(int cedula){
         String ci = String.valueOf(cedula);

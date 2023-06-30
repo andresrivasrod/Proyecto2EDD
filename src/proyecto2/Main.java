@@ -21,6 +21,7 @@ public class Main {
         NewClientUI UI=new NewClientUI();
         UI.setVisible(true);
         }
+         
     }
     
 

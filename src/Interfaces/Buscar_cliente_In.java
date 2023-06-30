@@ -32,9 +32,10 @@ public class Buscar_cliente_In extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        correo = new javax.swing.JTextField();
         Back = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        cedula = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,18 +43,18 @@ public class Buscar_cliente_In extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NewUI/Icons/UserIcon130x130.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 130, 130));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 130, 100));
 
-        jTextField1.setBackground(new java.awt.Color(32, 32, 33));
-        jTextField1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Buscar(Cedula)");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        correo.setBackground(new java.awt.Color(32, 32, 33));
+        correo.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        correo.setForeground(new java.awt.Color(255, 255, 255));
+        correo.setText("Buscar(Correo");
+        correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                correoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 170, 30));
+        getContentPane().add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 170, 30));
 
         Back.setBackground(new java.awt.Color(32, 32, 33));
         Back.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -81,6 +82,17 @@ public class Buscar_cliente_In extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 130, 90));
 
+        cedula.setBackground(new java.awt.Color(32, 32, 33));
+        cedula.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        cedula.setForeground(new java.awt.Color(255, 255, 255));
+        cedula.setText("Buscar(Cedula)");
+        cedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cedulaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 170, 30));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NewUI/Backgrounds/Background.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 300));
 
@@ -93,18 +105,22 @@ public class Buscar_cliente_In extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
         
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_correoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
-            f.checkIn(Integer.parseInt(jTextField1.getText()));
+            f.asignarHabitacion(Integer.parseInt(cedula.getText()),correo.getText());
         } catch(Exception e){
             ErrorWindow Error=new ErrorWindow();
             Error.setVisible(true);
     }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cedulaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +160,10 @@ public class Buscar_cliente_In extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JTextField cedula;
+    private javax.swing.JTextField correo;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

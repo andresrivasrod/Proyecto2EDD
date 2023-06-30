@@ -182,8 +182,16 @@ public class NewRoomUI extends javax.swing.JFrame {
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
         try{
-            String historico = f.historicoHabitacion(Integer.parseInt(IntHab.getText()));
-            Historico.setText(historico);
+            int a = Integer.parseInt(IntHab.getText());
+            if(a>=1 && a<=300){
+                String historico = f.historicoHabitacion(a);
+                Historico.setText(historico);
+            }else{
+                ErrorWindow Error=new ErrorWindow();
+                Error.setError_name("Esa habitacion no existe!!!");
+                Error.setVisible(true);
+            }
+            
         } catch(Exception e){
             ErrorWindow Error=new ErrorWindow();
             Error.setVisible(true);
